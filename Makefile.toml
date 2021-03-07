@@ -1,0 +1,7 @@
+[tasks.dev]
+script = [
+  "watchexec -i target cargo run"
+]
+
+[tasks.test]
+disabled = true
