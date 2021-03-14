@@ -11,7 +11,9 @@ fn main() {
             title: "game".to_string(),
             vsync: true,
             resizable: false,
-            mode: WindowMode::BorderlessFullscreen,
+            height: 720.,
+            width: 1280.,
+            // mode: WindowMode::BorderlessFullscreen,
             ..Default::default()
         })
         .add_plugins(DefaultPlugins)
