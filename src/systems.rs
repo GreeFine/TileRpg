@@ -5,6 +5,7 @@ mod click;
 mod grid;
 mod player;
 mod movement;
+mod spells;
 
 pub fn init(app: &mut AppBuilder) {
     app.add_startup_system(grid::spawn_grid.system())
