@@ -2,7 +2,7 @@ use bevy::prelude::*;
 
 use crate::consts::GRID_SIZE;
 
-use super::player::Position;
+use super::movement::Position;
 
 #[derive(Default)]
 pub struct TilesSize {

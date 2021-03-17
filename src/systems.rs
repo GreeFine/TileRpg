@@ -4,6 +4,7 @@ mod animations;
 mod click;
 mod grid;
 mod player;
+mod movement;
 
 pub fn init(app: &mut AppBuilder) {
     app.add_startup_system(grid::spawn_grid.system())
@@ -14,7 +15,7 @@ pub fn init(app: &mut AppBuilder) {
             "fixed_update",
             SystemStage::parallel()
                 .with_run_criteria(FixedTimestep::steps_per_second(4.0))
-                .with_system(player::move_player_system.system()),
+                .with_system(movement::move_system.system()),
         )
         .add_system(animations::animate_sprite_system.system());
 }
