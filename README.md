@@ -5,7 +5,9 @@
 ## Dependencies
 
 Linux: https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md
+
 Windows: Make sure to install [VS2019 build tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16)
+
 MacOS: No dependencies here
 
 ### Fast compiles
