@@ -1,6 +1,6 @@
 [tasks.dev]
 script = [
-  "watchexec -i target cargo run"
+  "watchexec -s SIGKILL -i target cargo run"
 ]
 
 [tasks.test]

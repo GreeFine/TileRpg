@@ -3,7 +3,9 @@ use bevy::{core::FixedTimestep, prelude::*};
 mod animations;
 mod click;
 mod grid;
+mod movement;
 mod player;
+mod spells;
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone, StageLabel)]
 struct FixedUpdateStage;
@@ -17,7 +19,8 @@ pub fn init(app: &mut AppBuilder) {
             CoreStage::Update,
             FixedUpdateStage,
             SystemStage::parallel()
-                .with_run_criteria(FixedTimestep::step(0.5))
-                .with_system(player::move_player_system.system()),
-        );
+                .with_run_criteria(FixedTimestep::steps_per_second(4.0))
+                .with_system(movement::move_system.system()),
+        )
+        .add_system(animations::animate_sprite_system.system());
 }

@@ -1,5 +1,5 @@
 use super::grid;
-use super::player::Player;
+use super::movement::Movable;
 use bevy::{prelude::*, window::CursorMoved};
 #[derive(Default)]
 pub struct State {
@@ -8,7 +8,7 @@ pub struct State {
 
 /// This system prints out all mouse events as they come in
 pub fn clicked_action_system<'a>(
-    mut players: Query<&mut Player>,
+    mut players: Query<&mut Movable>,
     mut state: Local<State>,
     mut cursor_moved_event_reader: EventReader<'a, CursorMoved>,
     mouse_button_input: Res<Input<MouseButton>>,
