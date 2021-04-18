@@ -5,7 +5,7 @@ use bevy::prelude::*;
 const TEXTURE_PLAYER_SIZE: f32 = 24.;
 
 pub fn create_player(
-    commands: &mut Commands,
+    mut commands: Commands,
     windows: Res<Windows>,
     asset_server: Res<AssetServer>,
     mut texture_atlases: ResMut<Assets<TextureAtlas>>,
@@ -27,7 +27,7 @@ pub fn create_player(
 
     info!("{:#?} {:#?}", size_tile_x, size_tile_y);
     commands
-        .spawn(SpriteSheetBundle {
+        .spawn_bundle(SpriteSheetBundle {
             texture_atlas: texture_atlas_handle,
             transform: Transform {
                 scale: Vec3::new(
@@ -44,8 +44,8 @@ pub fn create_player(
             },
             ..Default::default()
         })
-        .with(Player::default())
-        .with(Timer::from_seconds(0.1, true));
+        .insert(Player::default())
+        .insert(Timer::from_seconds(0.1, true));
 }
 
 #[derive(Debug)]

@@ -12,7 +12,7 @@ pub struct TilesSize {
 pub static mut TILESIZE: Option<TilesSize> = None;
 
 pub fn spawn_grid(
-    commands: &mut Commands,
+    mut commands: Commands,
     mut materials: ResMut<Assets<ColorMaterial>>,
     windows: Res<Windows>,
     asset_server: Res<AssetServer>,
@@ -37,7 +37,7 @@ pub fn spawn_grid(
     let pos0y = (size_tile_y / 2.) - (win_height / 2.);
     for col in 0..GRID_SIZE as u32 {
         for row in 0..GRID_SIZE as u32 {
-            commands.spawn(SpriteBundle {
+            commands.spawn_bundle(SpriteBundle {
                 material: material.clone(),
                 sprite: Sprite::new(spritevec),
                 transform: Transform::from_translation(Vec3::new(

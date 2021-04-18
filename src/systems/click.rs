@@ -1,20 +1,19 @@
 use super::grid;
-use super::player::{Player, Position};
+use super::player::Player;
 use bevy::{prelude::*, window::CursorMoved};
 #[derive(Default)]
 pub struct State {
-    cursor_moved_event_reader: EventReader<CursorMoved>,
     latest_cursor_pos: Vec2,
 }
 
 /// This system prints out all mouse events as they come in
-pub fn clicked_action_system(
+pub fn clicked_action_system<'a>(
     mut players: Query<&mut Player>,
     mut state: Local<State>,
+    mut cursor_moved_event_reader: EventReader<'a, CursorMoved>,
     mouse_button_input: Res<Input<MouseButton>>,
-    cursor_moved_events: Res<Events<CursorMoved>>,
 ) {
-    if let Some(latest_cursor_pos) = state.cursor_moved_event_reader.latest(&cursor_moved_events) {
+    if let Some(latest_cursor_pos) = cursor_moved_event_reader.iter().last() {
         state.latest_cursor_pos = latest_cursor_pos.position;
     }
     if mouse_button_input.just_pressed(MouseButton::Left) {

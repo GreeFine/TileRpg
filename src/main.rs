@@ -1,4 +1,4 @@
-use bevy::{prelude::*, window::WindowMode};
+use bevy::prelude::*;
 
 mod consts;
 mod systems;
@@ -6,8 +6,8 @@ mod systems;
 fn main() {
     let mut app = App::build();
 
-    app.add_resource(ClearColor(Color::rgb(0.9, 0.9, 0.9)))
-        .add_resource(WindowDescriptor {
+    app.insert_resource(ClearColor(Color::rgb(0.9, 0.9, 0.9)))
+        .insert_resource(WindowDescriptor {
             title: "game".to_string(),
             vsync: true,
             resizable: false,
@@ -24,6 +24,8 @@ fn main() {
     app.add_startup_system(setup.system()).run();
 }
 
-fn setup(commands: &mut Commands) {
-    commands.spawn(Camera2dBundle::default());
+fn setup(mut commands: Commands) {
+    let mut camera = OrthographicCameraBundle::new_2d();
+    camera.transform = Transform::from_translation(Vec3::new(0.0, 0.0, 5.0));
+    commands.spawn_bundle(camera);
 }
